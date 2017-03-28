@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block layout %}
+    <h1>Maladies list</h1>
+    <div class="table-responsive">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Traitement</th>
+                    <th>Especes</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for maladie in maladies %}
+                    <tr>
+                        <td><a href="{{ path('maladie_show', { 'id': maladie.id }) }}">{{ maladie.id }}</a></td>
+                        <td>{{ maladie.nom }}</td>
+                        <td>{{ maladie.traitement }}</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                {% for espece in maladie.especes %}
+                                    <li>{{ espece }}</li>
+                                {% endfor %}
+                            </ul>
+
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a role="button" class="btn btn-default" href="{{ path('maladie_show', { 'id': maladie.id }) }}">show</a>
+                                <a role="button" class="btn btn-default" href="{{ path('maladie_edit', { 'id': maladie.id }) }}">edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a class="btn btn-success" href="{{ path('maladie_new') }}" role="button">Créer nouvelle maladie</a>
+{% endblock %}

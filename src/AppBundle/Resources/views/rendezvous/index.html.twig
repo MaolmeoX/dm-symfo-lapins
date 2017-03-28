@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block layout %}
+    <h1>Rendezvouses list</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Reference</th>
+                <th>Iscoming</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for rendezVous in rendezVouses %}
+                <tr>
+                    <td><a href="{{ path('rendezvous_show', { 'id': rendezVous.id }) }}">{{ rendezVous.id }}</a></td>
+                    <td>{% if rendezVous.date %}{{ rendezVous.date|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ rendezVous.reference }}</td>
+                    <td>{% if rendezVous.isComing %}Yes{% else %}No{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('rendezvous_show', { 'id': rendezVous.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('rendezvous_edit', { 'id': rendezVous.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('rendezvous_new') }}">Create a new rendezVous</a>
+        </li>
+    </ul>
+{% endblock %}

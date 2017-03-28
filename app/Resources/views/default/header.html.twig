@@ -15,48 +15,46 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Client <span class="caret"></span></a>
+                <li class="dropdown {{ 'client' in app.request.attributes.get('_route') ? 'active' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Client <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ path('client_index') }}">Index</a></li>
                         <li><a href="{{ path('client_new') }}">New</a></li>
                     </ul>
                 </li>
-                {# On test si l'url contient le mot prestation, si oui, on met la classe active #}
-                {#<li class="{{ 'prestation' in app.request.attributes.get('_route') ? 'active' }}">#}
-                    {#<a href="{{ path('prestation_index') }}">Les Prestations<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="{{ 'rendezvous' in app.request.attributes.get('_route') ? 'active' }}">#}
-                    {#<a href="{{ path('rendezvous_index') }}">Prendre RDV<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="{{ 'cartecadeau' in app.request.attributes.get('_route') ? 'active' }}">#}
-                    {#<a href="{{ path('cartecadeau_index') }}">Cartes Cadeaux<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="{{ 'galerie' in app.request.attributes.get('_route') ? 'active' }}">#}
-                    {#<a href="{{ path('galerie_index') }}">Galerie Photo<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="{{ 'faq' in app.request.attributes.get('_route') ? 'active' }}">#}
-                    {#<a href="{{ path('faq_index') }}">FAQ<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="{{ 'contact' in app.request.attributes.get('_route') ? 'active' }}">#}
-                    {#<a href="{{ path('contact_index') }}">Contact<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="{{ 'user' in app.request.attributes.get('_route') ? 'active' }}">#}
-                    {#<a href="{{ path('fos_user_profile_show') }}">Espace Client<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#
-                Permet de connaître le rôle de l'utilisateur connecté et lui afficher ou non le bouton admin.
-                Les noms de rôle sont listés dans app/config/security.yml dans role_hierarchy
-                #}
-                {#{% if is_granted('ROLE_ADMIN') %}#}
-                    {#<li><a href="{{ path('sonata_admin_dashboard') }}">Admin</a></li>#}
-                {#{% endif %}#}
-                {#Permet de tester si un utilisateur est CONNECT2, dans ce cas on lui affiche déconnexion sinon on affiche connexion#}
-                {#{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}#}
-                    {#<li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>#}
-                {#{% else %}#}
-                    {#<li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>#}
-                {#{% endif %}#}
+                <li class="dropdown {{ 'docteur' in app.request.attributes.get('_route') ? 'active' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Docteur <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('docteur_index') }}">Index</a></li>
+                        <li><a href="{{ path('docteur_new') }}">New</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ 'espece' in app.request.attributes.get('_route') ? 'active' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Espece <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('espece_index') }}">Index</a></li>
+                        <li><a href="{{ path('espece_new') }}">New</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ 'maladie' in app.request.attributes.get('_route') ? 'active' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Maladie <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('maladie_index') }}">Index</a></li>
+                        <li><a href="{{ path('maladie_new') }}">New</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown {{ 'rendezvous' in app.request.attributes.get('_route') ? 'active' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Rendez-vous <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('rendezvous_index') }}">Index</a></li>
+                        <li><a href="{{ path('rendezvous_new') }}">New</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

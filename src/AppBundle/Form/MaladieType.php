@@ -6,26 +6,23 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ClientType extends AbstractType
+class MaladieType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('nom')
-            ->add('couleur')
-            ->add('espece');
+        $builder->add('nom')->add('traitement')->add('especes');
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Client'
+            'data_class' => 'AppBundle\Entity\Maladie'
         ));
     }
 
@@ -34,7 +31,7 @@ class ClientType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_client';
+        return 'appbundle_maladie';
     }
 
 

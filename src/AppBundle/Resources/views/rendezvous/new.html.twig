@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block layout %}
+    <h1>Rendezvous creation</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    {#{{ form_start(form) }}#}
+    {#{{ form_row(form.date) }}#}
+    {#{{ form_errors(form.date) }}#}
+    {#{{ form_widget(form.date) }}#}
+
+    {#{{ form_row(form.client) }}#}
+    {#{{ form_errors(form.client) }}#}
+    {#{{ form_widget(form.client) }}#}
+
+    {#<input type="submit" value="Create" />#}
+
+    <p>Référence = {{ form.reference.vars.value }}</p>
+
+    <ul>
+        <li>
+            <a href="{{ path('rendezvous_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

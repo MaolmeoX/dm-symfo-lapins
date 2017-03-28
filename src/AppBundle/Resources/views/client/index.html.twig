@@ -3,37 +3,41 @@
 {% block layout %}
     <h1>Clients list</h1>
 
-    <table>
-        <thead>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Couleur</th>
-                <th>Createdat</th>
+                <th>Espèce</th>
+                <th>Créé le</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr>
-                <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
-                <td>{{ client.nom }}</td>
-                <td>{{ client.couleur }}</td>
-                <td>{% if client.createdAt %}{{ client.createdAt|date('Y-m-d') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('client_show', { 'id': client.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
+                    <td>{{ client.nom }}</td>
+                    <td>{{ client.couleur }}</td>
+                    <td>{{ client.espece }}</td>
+                    <td>{% if client.createdAt %}{{ client.createdAt|date('d/m/Y') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('client_show', { 'id': client.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <ul>
         <li>

@@ -3,8 +3,9 @@
 {% block layout %}
     <h1>Client</h1>
 
-    <table>
-        <tbody>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ client.id }}</td>
@@ -21,8 +22,21 @@
                 <th>Createdat</th>
                 <td>{% if client.createdAt %}{{ client.createdAt|date('Y-m-d') }}{% endif %}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            {% for rendezVous in client.rendezVous %}
+                <tr>
+                    <pre>{{ dump(rendezVous) }}</pre>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <ul>
         <li>
@@ -33,7 +47,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

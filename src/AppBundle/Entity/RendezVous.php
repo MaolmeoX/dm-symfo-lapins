@@ -42,6 +42,18 @@ class RendezVous
      */
     private $isComing;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="rendezVous")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
+
+    public function __construct()
+    {
+        $this->reference = random_bytes(14);
+    }
+
+
 
     /**
      * Get id
@@ -120,5 +132,29 @@ class RendezVous
     public function getIsComing()
     {
         return $this->isComing;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \AppBundle\Entity\Client $client
+     *
+     * @return RendezVous
+     */
+    public function setClient(\AppBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \AppBundle\Entity\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 }

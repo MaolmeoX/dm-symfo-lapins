@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Espece
@@ -28,6 +29,25 @@ class Espece
      */
     private $nom;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Client", mappedBy="espece")
+     */
+    private $clients;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Maladie", mappedBy="especes")
+     */
+    private $maladies;
+
+    public function __construct() {
+        $this->clients = new ArrayCollection();
+        $this->maladies = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 
     /**
      * Get id
@@ -60,5 +80,75 @@ class Espece
     public function getNom()
     {
         return $this->nom;
+    }
+
+
+
+    /**
+     * Add client
+     *
+     * @param \AppBundle\Entity\Client $client
+     *
+     * @return Espece
+     */
+    public function addClient(\AppBundle\Entity\Client $client)
+    {
+        $this->clients[] = $client;
+
+        return $this;
+    }
+
+    /**
+     * Remove client
+     *
+     * @param \AppBundle\Entity\Client $client
+     */
+    public function removeClient(\AppBundle\Entity\Client $client)
+    {
+        $this->clients->removeElement($client);
+    }
+
+    /**
+     * Get clients
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    /**
+     * Add malady
+     *
+     * @param \AppBundle\Entity\Maladie $malady
+     *
+     * @return Espece
+     */
+    public function addMalady(\AppBundle\Entity\Maladie $malady)
+    {
+        $this->maladies[] = $malady;
+
+        return $this;
+    }
+
+    /**
+     * Remove malady
+     *
+     * @param \AppBundle\Entity\Maladie $malady
+     */
+    public function removeMalady(\AppBundle\Entity\Maladie $malady)
+    {
+        $this->maladies->removeElement($malady);
+    }
+
+    /**
+     * Get maladies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMaladies()
+    {
+        return $this->maladies;
     }
 }

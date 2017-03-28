@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block layout %}
+    <h1>Especes list</h1>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for espece in especes %}
+                <tr>
+                    <td><a href="{{ path('espece_show', { 'id': espece.id }) }}">{{ espece.id }}</a></td>
+                    <td>{{ espece.nom }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('espece_show', { 'id': espece.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('espece_edit', { 'id': espece.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('espece_new') }}">Create a new espece</a>
+        </li>
+    </ul>
+{% endblock %}

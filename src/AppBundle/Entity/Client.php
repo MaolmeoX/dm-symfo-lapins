@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Client
@@ -42,6 +43,44 @@ class Client
      * @ORM\Column(name="createdAt", type="date")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Espece", inversedBy="clients")
+     * @ORM\JoinColumn(name="espece_id", referencedColumnName="id")
+     */
+    private $espece;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RendezVous", mappedBy="client")
+     */
+    private $rendezVous;
+
+    public function __construct() {
+        $this->rendezVous = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getNom().' '.$this->getEspece();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEspece()
+    {
+        return $this->espece;
+    }
+
+    /**
+     * @param mixed $espece
+     * @return Client
+     */
+    public function setEspece($espece)
+    {
+        $this->espece = $espece;
+        return $this;
+    }
 
 
     /**
@@ -129,5 +168,39 @@ class Client
     public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * Add rendezVous
+     *
+     * @param \AppBundle\Entity\RendezVous $rendezVous
+     *
+     * @return Client
+     */
+    public function addRendezVous(\AppBundle\Entity\RendezVous $rendezVous)
+    {
+        $this->rendezVous[] = $rendezVous;
+
+        return $this;
+    }
+
+    /**
+     * Remove rendezVous
+     *
+     * @param \AppBundle\Entity\RendezVous $rendezVous
+     */
+    public function removeRendezVous(\AppBundle\Entity\RendezVous $rendezVous)
+    {
+        $this->rendezVous->removeElement($rendezVous);
+    }
+
+    /**
+     * Get rendezVous
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRendezVous()
+    {
+        return $this->rendezVous;
     }
 }

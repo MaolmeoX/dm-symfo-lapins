@@ -19,19 +19,28 @@
                 <td>{{ client.couleur }}</td>
             </tr>
             <tr>
-                <th>Createdat</th>
+                <th>Date création</th>
                 <td>{% if client.createdAt %}{{ client.createdAt|date('Y-m-d') }}{% endif %}</td>
             </tr>
             </tbody>
         </table>
     </div>
-
+    <h2>Rendez-vous</h2>
     <div class="table-responsive">
         <table class="table">
+            <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Date rendez-vous</th>
+                <th>Est venue</th>
+            </tr>
+            </thead>
             <tbody>
             {% for rendezVous in client.rendezVous %}
                 <tr>
-                    <pre>{{ dump(rendezVous) }}</pre>
+                    <td>{{ rendezVous.reference }}</td>
+                    <td>{{ rendezVous.date|date('d-m-Y') }}</td>
+                    <td>{{ rendezVous.isComing ? 'Oui' : 'Non' }}</td>
                 </tr>
             {% endfor %}
             </tbody>

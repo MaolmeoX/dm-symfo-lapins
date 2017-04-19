@@ -21,7 +21,7 @@ class RendezVousType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => true,
             ))
-            ->add('reference')
+//            ->add('reference')
             ->add('isComing')
             ->add('client');
     }

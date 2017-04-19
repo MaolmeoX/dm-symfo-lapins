@@ -4,22 +4,15 @@
     <h1>Rendezvous creation</h1>
 
     {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    {#{{ form_row(form.reference, { 'attr': {'disabled': 'disabled'} }) }}#}
+    {{ form_row(form.date) }}
 
-    {#{{ form_start(form) }}#}
-    {#{{ form_row(form.date) }}#}
-    {#{{ form_errors(form.date) }}#}
-    {#{{ form_widget(form.date) }}#}
 
-    {#{{ form_row(form.client) }}#}
-    {#{{ form_errors(form.client) }}#}
-    {#{{ form_widget(form.client) }}#}
+    {{ form_widget(form._token) }}
 
-    {#<input type="submit" value="Create" />#}
+    {{ form_row(form.client) }}
 
-    <p>Référence = {{ form.reference.vars.value }}</p>
+    <input type="submit" value="Create"/>
 
     <ul>
         <li>

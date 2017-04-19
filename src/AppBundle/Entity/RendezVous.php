@@ -40,7 +40,7 @@ class RendezVous
      *
      * @ORM\Column(name="isComing", type="boolean")
      */
-    private $isComing;
+    private $isComing = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="rendezVous")
@@ -50,7 +50,7 @@ class RendezVous
 
     public function __construct()
     {
-        $this->reference = random_bytes(14);
+        $this->reference = bin2hex(random_bytes(14));
     }
 
 

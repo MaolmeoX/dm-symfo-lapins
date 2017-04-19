@@ -55,6 +55,14 @@
                         <li><a href="{{ path('rendezvous_new') }}">New</a></li>
                     </ul>
                 </li>
+                <li class="dropdown {{ 'traitement' in app.request.attributes.get('_route') ? 'active' }}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Traitement <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('traitement_index') }}">Index</a></li>
+                        <li><a href="{{ path('traitement_new') }}">New</a></li>
+                    </ul>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

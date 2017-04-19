@@ -30,9 +30,7 @@ class Maladie
     private $nom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="traitement", type="text")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Traitement", mappedBy="maladie")
      */
     private $traitement;
 
@@ -45,6 +43,12 @@ class Maladie
     public function __construct() {
         $this->especes = new ArrayCollection();
     }
+
+    function __toString()
+    {
+       return $this->getNom();
+    }
+
 
     /**
      * Get id
@@ -80,30 +84,6 @@ class Maladie
     }
 
     /**
-     * Set traitement
-     *
-     * @param string $traitement
-     * @return Maladie
-     */
-    public function setTraitement($traitement)
-    {
-        $this->traitement = $traitement;
-
-        return $this;
-    }
-
-    /**
-     * Get traitement
-     *
-     * @return string 
-     */
-    public function getTraitement()
-    {
-        return $this->traitement;
-    }
-
-
-    /**
      * Add espece
      *
      * @param \AppBundle\Entity\Espece $espece
@@ -135,5 +115,29 @@ class Maladie
     public function getEspeces()
     {
         return $this->especes;
+    }
+
+    /**
+     * Set traitement
+     *
+     * @param \AppBundle\Entity\Traitement $traitement
+     *
+     * @return Maladie
+     */
+    public function setTraitement(\AppBundle\Entity\Traitement $traitement = null)
+    {
+        $this->traitement = $traitement;
+
+        return $this;
+    }
+
+    /**
+     * Get traitement
+     *
+     * @return \AppBundle\Entity\Traitement
+     */
+    public function getTraitement()
+    {
+        return $this->traitement;
     }
 }

@@ -19,7 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FixturesController extends Controller
 {
-
     /**
      * @Route("/remplissage", name="remplissage_bdd", options={"expose"=true})
      * @Method("GET")
@@ -34,7 +33,6 @@ class FixturesController extends Controller
             'command' => 'doctrine:fixtures:load','-q'
         ));
 
-        // You can use NullOutput() if you don't need the output
         $output = new NullOutput();
         $application->run($input, $output);
 

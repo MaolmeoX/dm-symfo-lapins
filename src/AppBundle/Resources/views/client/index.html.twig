@@ -24,24 +24,15 @@
                     <td>{{ client.espece }}</td>
                     <td>{% if client.createdAt %}{{ client.createdAt|date('d/m/Y') }}{% endif %}</td>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('client_show', { 'id': client.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <a role="button" class="btn btn-default" href="{{ path('client_show', { 'id': client.id }) }}">show</a>
+                            <a role="button" class="btn btn-default" href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
-
-    <ul>
-        <li>
-            <a href="{{ path('client_new') }}">Create a new client</a>
-        </li>
-    </ul>
+    <a class="btn btn-success" href="{{ path('client_new') }}" role="button">Créer nouveau client</a>
 {% endblock %}

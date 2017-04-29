@@ -13,7 +13,7 @@ class DocteurType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('prenom');
+        $builder->add('nom')->add('prenom')->add('especes');
     }
     
     /**

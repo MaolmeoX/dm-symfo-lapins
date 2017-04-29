@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,6 +35,18 @@ class Docteur
      * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
+
+    /**
+     * @var
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Espece", inversedBy="docteurs")
+     * @ORM\JoinTable(name="docteurs_especes")
+     */
+    private $especes;
+
+    public function __construct()
+    {
+        $this->especes = new ArrayCollection();
+    }
 
 
     /**
@@ -90,5 +103,39 @@ class Docteur
     public function getPrenom()
     {
         return $this->prenom;
+    }
+
+    /**
+     * Add espece
+     *
+     * @param \AppBundle\Entity\Espece $espece
+     *
+     * @return Docteur
+     */
+    public function addEspece(\AppBundle\Entity\Espece $espece)
+    {
+        $this->especes[] = $espece;
+
+        return $this;
+    }
+
+    /**
+     * Remove espece
+     *
+     * @param \AppBundle\Entity\Espece $espece
+     */
+    public function removeEspece(\AppBundle\Entity\Espece $espece)
+    {
+        $this->especes->removeElement($espece);
+    }
+
+    /**
+     * Get especes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEspeces()
+    {
+        return $this->especes;
     }
 }

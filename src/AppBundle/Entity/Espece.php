@@ -39,9 +39,16 @@ class Espece
      */
     private $maladies;
 
+    /**
+     * @var
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Docteur", mappedBy="especes")
+     */
+    private $docteurs;
+
     public function __construct() {
         $this->clients = new ArrayCollection();
         $this->maladies = new ArrayCollection();
+        $this->docteurs = new ArrayCollection();
     }
 
     public function __toString()
@@ -150,5 +157,39 @@ class Espece
     public function getMaladies()
     {
         return $this->maladies;
+    }
+
+    /**
+     * Add docteur
+     *
+     * @param \AppBundle\Entity\Docteur $docteur
+     *
+     * @return Espece
+     */
+    public function addDocteur(\AppBundle\Entity\Docteur $docteur)
+    {
+        $this->docteurs[] = $docteur;
+
+        return $this;
+    }
+
+    /**
+     * Remove docteur
+     *
+     * @param \AppBundle\Entity\Docteur $docteur
+     */
+    public function removeDocteur(\AppBundle\Entity\Docteur $docteur)
+    {
+        $this->docteurs->removeElement($docteur);
+    }
+
+    /**
+     * Get docteurs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocteurs()
+    {
+        return $this->docteurs;
     }
 }

@@ -35,6 +35,10 @@ class Traitement
      */
     private $maladie;
 
+    function __toString()
+    {
+        return $this->getNom();
+    }
 
     /**
      * Get id

@@ -18,24 +18,15 @@
                     <td><a href="{{ path('espece_show', { 'id': espece.id }) }}">{{ espece.id }}</a></td>
                     <td>{{ espece.nom }}</td>
                     <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('espece_show', { 'id': espece.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('espece_edit', { 'id': espece.id }) }}">edit</a>
-                            </li>
-                        </ul>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <a role="button" class="btn btn-default" href="{{ path('espece_show', { 'id': espece.id }) }}">show</a>
+                            <a role="button" class="btn btn-default" href="{{ path('espece_edit', { 'id': espece.id }) }}">edit</a>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
-
-    <ul>
-        <li>
-            <a href="{{ path('espece_new') }}">Create a new espece</a>
-        </li>
-    </ul>
+    <a class="btn btn-success" href="{{ path('espece_new') }}" role="button">Créer nouvelle espèce</a>
 {% endblock %}

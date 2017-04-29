@@ -2,12 +2,13 @@
 
 {% block layout %}
     <h1>Traitements list</h1>
-
-    <table>
+<div class="table-responsive">
+    <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
+                <th>Maladie</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,24 +17,17 @@
             <tr>
                 <td><a href="{{ path('traitement_show', { 'id': traitement.id }) }}">{{ traitement.id }}</a></td>
                 <td>{{ traitement.nom }}</td>
+                <td>{{ traitement.maladie.nom }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('traitement_show', { 'id': traitement.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('traitement_edit', { 'id': traitement.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <a role="button" class="btn btn-default" href="{{ path('traitement_show', { 'id': traitement.id }) }}">show</a>
+                        <a role="button" class="btn btn-default" href="{{ path('traitement_edit', { 'id': traitement.id }) }}">edit</a>
+                    </div>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('traitement_new') }}">Create a new traitement</a>
-        </li>
-    </ul>
+</div>
+    <a class="btn btn-success" href="{{ path('traitement_new') }}" role="button">Créer nouveau traitement</a>
 {% endblock %}

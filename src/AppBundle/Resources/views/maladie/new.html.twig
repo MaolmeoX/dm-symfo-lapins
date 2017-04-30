@@ -4,9 +4,15 @@
     <h1>Maladie creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    {{ form_row(form.nom) }}
+
+    {{ form_row(form.especes) }}
+    <hr>
+    <h3>Ajouter un traitement pour cette maladie</h3>
+    {{ form_row(form.traitement.nom) }}
+    {{ form_widget(form._token) }}
+
+    <input type="submit" value="Create" />
 
     <ul>
         <li>

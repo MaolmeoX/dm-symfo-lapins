@@ -43,6 +43,12 @@ class Docteur
      */
     private $especes;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RendezVous", mappedBy="docteur")
+     */
+    private $rdvs;
+
     public function __construct()
     {
         $this->especes = new ArrayCollection();
@@ -137,5 +143,39 @@ class Docteur
     public function getEspeces()
     {
         return $this->especes;
+    }
+
+    /**
+     * Add rdv
+     *
+     * @param \AppBundle\Entity\RendezVous $rdv
+     *
+     * @return Docteur
+     */
+    public function addRdv(\AppBundle\Entity\RendezVous $rdv)
+    {
+        $this->rdvs[] = $rdv;
+
+        return $this;
+    }
+
+    /**
+     * Remove rdv
+     *
+     * @param \AppBundle\Entity\RendezVous $rdv
+     */
+    public function removeRdv(\AppBundle\Entity\RendezVous $rdv)
+    {
+        $this->rdvs->removeElement($rdv);
+    }
+
+    /**
+     * Get rdvs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRdvs()
+    {
+        return $this->rdvs;
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Maladie
@@ -30,7 +31,9 @@ class Maladie
     private $nom;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Traitement", mappedBy="maladie")
+     * @Assert\Type(type="AppBundle\Entity\Traitement")
+     * @Assert\Valid()
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Traitement", mappedBy="maladie", cascade={"persist"})
      */
     private $traitement;
 
@@ -127,6 +130,7 @@ class Maladie
     public function setTraitement(\AppBundle\Entity\Traitement $traitement = null)
     {
         $this->traitement = $traitement;
+        $traitement->setMaladie($this);
 
         return $this;
     }

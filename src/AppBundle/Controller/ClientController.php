@@ -18,7 +18,7 @@ class ClientController extends Controller
     /**
      * Lists all client entities.
      *
-     * @Route("/", name="client_index")
+     * @Route("/", name="client_index", options={"expose"=true})
      * @Method("GET")
      */
     public function indexAction()

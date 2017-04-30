@@ -30,7 +30,7 @@ class Traitement
 
     /**
      * One Cart has One Customer.
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Maladie", inversedBy="traitement")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Maladie", inversedBy="traitement", cascade={"persist"})
      * @ORM\JoinColumn(name="maladie_id", referencedColumnName="id")
      */
     private $maladie;

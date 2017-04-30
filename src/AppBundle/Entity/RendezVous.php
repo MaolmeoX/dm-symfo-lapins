@@ -48,6 +48,13 @@ class RendezVous
      */
     private $client;
 
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Docteur", inversedBy="rdvs")
+     * @ORM\JoinColumn(name="docteur_id", referencedColumnName="id")
+     */
+    private $docteur;
+
     public function __construct()
     {
         $this->reference = bin2hex(random_bytes(14));
@@ -156,5 +163,29 @@ class RendezVous
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Set docteur
+     *
+     * @param \AppBundle\Entity\Docteur $docteur
+     *
+     * @return RendezVous
+     */
+    public function setDocteur(\AppBundle\Entity\Docteur $docteur = null)
+    {
+        $this->docteur = $docteur;
+
+        return $this;
+    }
+
+    /**
+     * Get docteur
+     *
+     * @return \AppBundle\Entity\Docteur
+     */
+    public function getDocteur()
+    {
+        return $this->docteur;
     }
 }

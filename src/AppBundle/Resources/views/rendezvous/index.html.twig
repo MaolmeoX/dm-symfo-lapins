@@ -10,6 +10,8 @@
                 <th>Date</th>
                 <th>Reference</th>
                 <th>Iscoming</th>
+                <th>Docteur</th>
+                <th>Maladie</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -20,6 +22,8 @@
                     <td>{% if rendezVous.date %}{{ rendezVous.date|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ rendezVous.reference }}</td>
                     <td>{% if rendezVous.isComing %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ rendezVous.docteur }}</td>
+                    <td>{{ rendezVous.maladie }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="...">
                             <a role="button" class="btn btn-default" href="{{ path('rendezvous_show', { 'id': rendezVous.id }) }}">show</a>

@@ -5,14 +5,16 @@
 
     {{ form_start(form) }}
     {#{{ form_row(form.reference, { 'attr': {'disabled': 'disabled'} }) }}#}
-    {{ form_row(form.date) }}
+    {#{{ form_row(form.date) }}#}
+    {#{{ form_row(form.client) }}#}
+    {#{{ form_row(form.docteur) }}#}
+    {#{{ form_row(form.maladie) }}#}
+    {#{{ form_widget(form._token) }}#}
 
-
-    {{ form_widget(form._token) }}
-
-    {{ form_row(form.client) }}
+    {{ form_rest(form) }}
 
     <input type="submit" value="Create"/>
+    {{ form_end(form) }}
 
     <ul>
         <li>

@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class DocteurRepository extends EntityRepository
 {
+
+    public function getByClientEspece(int $idEspece)
+    {
+        $qb = $this->createQueryBuilder('d')
+            ->join('d.especes', 'de')
+            ->where('de.id = :id')
+            ->setParameter('id', $idEspece);
+
+        return $qb;
+    }
 }

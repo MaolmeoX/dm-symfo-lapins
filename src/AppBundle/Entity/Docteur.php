@@ -54,6 +54,10 @@ class Docteur
         $this->especes = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->nom.' '.$this->prenom;
+    }
 
     /**
      * Get id

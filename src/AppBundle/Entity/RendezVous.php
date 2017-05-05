@@ -50,6 +50,13 @@ class RendezVous
 
     /**
      * @var
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Maladie")
+     * @ORM\JoinColumn(name="maladie_id", referencedColumnName="id")
+     */
+    private $maladie;
+
+    /**
+     * @var
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Docteur", inversedBy="rdvs")
      * @ORM\JoinColumn(name="docteur_id", referencedColumnName="id")
      */
@@ -187,5 +194,29 @@ class RendezVous
     public function getDocteur()
     {
         return $this->docteur;
+    }
+
+    /**
+     * Set maladie
+     *
+     * @param \AppBundle\Entity\Maladie $maladie
+     *
+     * @return RendezVous
+     */
+    public function setMaladie(\AppBundle\Entity\Maladie $maladie = null)
+    {
+        $this->maladie = $maladie;
+
+        return $this;
+    }
+
+    /**
+     * Get maladie
+     *
+     * @return \AppBundle\Entity\Maladie
+     */
+    public function getMaladie()
+    {
+        return $this->maladie;
     }
 }

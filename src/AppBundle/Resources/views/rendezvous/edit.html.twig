@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block layout %}
+    Client: {{ rendezVous.client }} <br>
+    Docteur : {{ rendezVous.docteur }} <br>
+    Date : {{ rendezVous.date|date('d/m/Y') }}
     <h1>Rendezvous edit</h1>
-
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+
+    {#{{ form_row(edit_form.isComing) }}#}
+    {#{{ form_row(edit_form.maladie) }}#}
+    {#<div class="hidden-form">#}
+        {{ form_rest(edit_form) }}
+    {#</div>#}
+    <input type="submit" value="Edit"/>
+    {#</form>#}
     {{ form_end(edit_form) }}
 
     <ul>
@@ -14,7 +22,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -31,16 +31,14 @@ $(document).ready(function () {
         // Submit data via AJAX to the form's action path.
         $.ajax({
             url : $form.attr('action'),
-            type: 'GET',
+            type: $form.attr('method'),
             data : data,
             success: function(html) {
-                console.log($(html).find('#appbundle_rendezvous_docteur'));
                 // Replace current position field ...
                 $('#appbundle_rendezvous_docteur').replaceWith(
                     // ... with the returned one from the AJAX response.
                     $(html).find('#appbundle_rendezvous_docteur')
                 );
-                // Position field now displays the appropriate positions.
             }
         });
     });

@@ -43,8 +43,15 @@ class Maladie
      */
     private $especes;
 
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RendezVous", mappedBy="maladie")
+     */
+    private $rendezVouses;
+
     public function __construct() {
         $this->especes = new ArrayCollection();
+        $this->rendezVouses = new ArrayCollection();
     }
 
     function __toString()
@@ -143,5 +150,39 @@ class Maladie
     public function getTraitement()
     {
         return $this->traitement;
+    }
+
+    /**
+     * Add rendezVouse
+     *
+     * @param \AppBundle\Entity\RendezVous $rendezVouse
+     *
+     * @return Maladie
+     */
+    public function addRendezVouse(\AppBundle\Entity\RendezVous $rendezVouse)
+    {
+        $this->rendezVouses[] = $rendezVouse;
+
+        return $this;
+    }
+
+    /**
+     * Remove rendezVouse
+     *
+     * @param \AppBundle\Entity\RendezVous $rendezVouse
+     */
+    public function removeRendezVouse(\AppBundle\Entity\RendezVous $rendezVouse)
+    {
+        $this->rendezVouses->removeElement($rendezVouse);
+    }
+
+    /**
+     * Get rendezVouses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRendezVouses()
+    {
+        return $this->rendezVouses;
     }
 }

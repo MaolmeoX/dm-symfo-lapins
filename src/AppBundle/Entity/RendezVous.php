@@ -50,7 +50,7 @@ class RendezVous
 
     /**
      * @var
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Maladie")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Maladie", inversedBy="rendezVouses")
      * @ORM\JoinColumn(name="maladie_id", referencedColumnName="id")
      */
     private $maladie;
@@ -66,8 +66,6 @@ class RendezVous
     {
         $this->reference = bin2hex(random_bytes(14));
     }
-
-
 
     /**
      * Get id

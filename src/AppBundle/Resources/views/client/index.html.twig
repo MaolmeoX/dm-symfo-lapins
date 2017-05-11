@@ -12,6 +12,7 @@
                 <th>Couleur</th>
                 <th>Espèce</th>
                 <th>Créé le</th>
+                <th>Rendez vous</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -24,9 +25,35 @@
                     <td>{{ client.espece }}</td>
                     <td>{% if client.createdAt %}{{ client.createdAt|date('d/m/Y') }}{% endif %}</td>
                     <td>
+                        {% if client.rendezVous is not empty %}
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Maladie</th>
+                                        <th>Traitement</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for rendezVous in client.rendezVous %}
+                                        <tr>
+                                            <td>{{ rendezVous.date|date('d/m/Y') }}</td>
+                                            <td>{{ rendezVous.maladie.nom is defined ? rendezVous.maladie.nom : 'Non défini' }}</td>
+                                            <td>{{ rendezVous.maladie.traitement is defined ? rendezVous.maladie.traitement : 'Non défini' }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    </td>
+                    <td>
                         <div class="btn-group" role="group" aria-label="...">
-                            <a role="button" class="btn btn-default" href="{{ path('client_show', { 'id': client.id }) }}">show</a>
-                            <a role="button" class="btn btn-default" href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
+                            <a role="button" class="btn btn-default"
+                               href="{{ path('client_show', { 'id': client.id }) }}">show</a>
+                            <a role="button" class="btn btn-default"
+                               href="{{ path('client_edit', { 'id': client.id }) }}">edit</a>
                         </div>
                     </td>
                 </tr>

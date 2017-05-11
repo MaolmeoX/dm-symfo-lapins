@@ -33,6 +33,7 @@
                 <th>Référence</th>
                 <th>Date rendez-vous</th>
                 <th>Est venue</th>
+                <th>Maladie</th>
             </tr>
             </thead>
             <tbody>
@@ -41,6 +42,7 @@
                     <td>{{ rendezVous.reference }}</td>
                     <td>{{ rendezVous.date|date('d-m-Y') }}</td>
                     <td>{{ rendezVous.isComing ? 'Oui' : 'Non' }}</td>
+                    <td>{{ rendezVous.maladie }}</td>
                 </tr>
             {% endfor %}
             </tbody>

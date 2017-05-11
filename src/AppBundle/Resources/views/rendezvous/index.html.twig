@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Date</th>
                 <th>Reference</th>
+                <th>Client</th>
                 <th>Iscoming</th>
                 <th>Docteur</th>
                 <th>Maladie</th>
@@ -23,6 +24,7 @@
                     <td>{% if rendezVous.date %}{{ rendezVous.date|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ rendezVous.reference }}</td>
                     <td>{% if rendezVous.isComing %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ rendezVous.client }}</td>
                     <td>{{ rendezVous.docteur }}</td>
                     <td>{{ rendezVous.maladie }}</td>
                     <td>{{ rendezVous.maladie is not empty ? rendezVous.maladie.traitement }}</td>

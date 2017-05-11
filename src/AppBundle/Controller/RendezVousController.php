@@ -25,6 +25,8 @@ class RendezVousController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $rendezVouses = $em->getRepository('AppBundle:RendezVous')->findAll();
+        $lapinsList = $em->getRepository('AppBundle:RendezVous')->getAllLapinNotComingToFirstRdv('lapin');
+        dump($lapinsList);
 
         return $this->render('AppBundle:rendezvous:index.html.twig', array(
             'rendezVouses' => $rendezVouses,

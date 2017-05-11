@@ -56,11 +56,11 @@ class RendezVousType extends AbstractType
             function (FormEvent $event) use ($formModifier) {
                 $rendezVous = $event->getData();
                 $form = $event->getForm();
+                $formModifier($event->getForm(), $rendezVous->getClient());
 
                 if (!$rendezVous || null != $rendezVous->getId()) {
-                    $form->add('maladie')->add('isComing');
+                    $form->add('isComing')->add('maladie');
                 }
-                $formModifier($event->getForm(), $rendezVous->getClient());
             }
         );
 

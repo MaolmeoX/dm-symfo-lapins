@@ -3,6 +3,8 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use AppBundle\Entity\Client;
+use AppBundle\Repository\RendezVousRepository;
 
 /**
  * ClientRepository
@@ -12,4 +14,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class ClientRepository extends EntityRepository
 {
+
+    public function getAllByEspece(String $espece)
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.espece', 'e')
+            ->where('e.nom = :nom')
+            ->setParameter('nom', $espece)
+            ->getQuery()
+            ->getResult();
+    }
 }

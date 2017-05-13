@@ -27,8 +27,18 @@ class ClientController extends Controller
 
         $clients = $em->getRepository('AppBundle:Client')->findAll();
 
+        $lapins = $em->getRepository('AppBundle:Client')->getAllByEspece('lapin');
+        foreach ($lapins as $lapin) {
+            $first = $lapin->getRendezVous()->first();
+            $lapin->getRendezVous()->clear();
+            if(!empty($first)){
+                $lapin->addRendezVous($first);
+            }
+        }
+
         return $this->render('AppBundle:client:index.html.twig', array(
             'clients' => $clients,
+            'lapins' => $lapins,
         ));
     }
 
@@ -131,7 +141,6 @@ class ClientController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('client_delete', array('id' => $client->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

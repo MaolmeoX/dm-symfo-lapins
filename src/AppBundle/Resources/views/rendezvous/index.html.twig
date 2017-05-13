@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block layout %}
-    <h1>Rendezvouses list</h1>
+    <h1>Liste des rendez-vous</h1>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -23,8 +23,8 @@
                     <td><a href="{{ path('rendezvous_show', { 'id': rendezVous.id }) }}">{{ rendezVous.id }}</a></td>
                     <td>{% if rendezVous.date %}{{ rendezVous.date|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ rendezVous.reference }}</td>
-                    <td>{% if rendezVous.isComing %}Yes{% else %}No{% endif %}</td>
                     <td>{{ rendezVous.client }}</td>
+                    <td>{% if rendezVous.isComing %}Yes{% else %}No{% endif %}</td>
                     <td>{{ rendezVous.docteur }}</td>
                     <td>{{ rendezVous.maladie }}</td>
                     <td>{{ rendezVous.maladie is not empty ? rendezVous.maladie.traitement }}</td>

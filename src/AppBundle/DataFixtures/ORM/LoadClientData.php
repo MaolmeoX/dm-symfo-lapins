@@ -41,6 +41,12 @@ class LoadClientData extends AbstractFixture implements OrderedFixtureInterface
         $client4->setEspece($this->getReference('cheval'));
         $manager->persist($client4);
 
+        $client5 = new Client();
+        $client5->setNom('Lapin');
+        $client5->setCouleur('rose');
+        $client5->setEspece($this->getReference('lapin'));
+        $manager->persist($client5);
+
 
         $manager->flush();
     }

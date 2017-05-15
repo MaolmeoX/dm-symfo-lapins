@@ -18,25 +18,19 @@ $(document).ready(function () {
             });
         }
 
-    })
+    });
 
     var client = $('#appbundle_rendezvous_client');
-// When sport gets selected ...
-    client.change(function() {
-        // ... retrieve the corresponding form.
+    client.change(function () {
         var $form = $(this).closest('form');
-        // Simulate form data, but only include the selected sport value.
         var data = {};
         data[client.attr('name')] = client.val();
-        // Submit data via AJAX to the form's action path.
         $.ajax({
-            url : $form.attr('action'),
+            url: $form.attr('action'),
             type: $form.attr('method'),
-            data : data,
-            success: function(html) {
-                // Replace current position field ...
+            data: data,
+            success: function (html) {
                 $('#appbundle_rendezvous_docteur').replaceWith(
-                    // ... with the returned one from the AJAX response.
                     $(html).find('#appbundle_rendezvous_docteur')
                 );
             }

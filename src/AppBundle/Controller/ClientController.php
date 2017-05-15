@@ -28,14 +28,18 @@ class ClientController extends Controller
         $clients = $em->getRepository('AppBundle:Client')->findAll();
 
         $lapins = $em->getRepository('AppBundle:Client')->getAllByEspece('lapin');
-        foreach ($lapins as $lapin) {
+
+        foreach ($lapins as $key => $lapin) {
             $first = $lapin->getRendezVous()->first();
-            $lapin->getRendezVous()->clear();
-            if(!empty($first)){
+            if (empty($first)) {
+                unset($lapins[$key]);
+            } elseif ($first->getIsComing() == true) {
+                unset($lapins[$key]);
+            } else {
+                $lapin->getRendezVous()->clear();
                 $lapin->addRendezVous($first);
             }
         }
-
         return $this->render('AppBundle:client:index.html.twig', array(
             'clients' => $clients,
             'lapins' => $lapins,
@@ -48,7 +52,8 @@ class ClientController extends Controller
      * @Route("/new", name="client_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public
+    function newAction(Request $request)
     {
         $client = new Client();
         $form = $this->createForm('AppBundle\Form\ClientType', $client);
@@ -74,7 +79,8 @@ class ClientController extends Controller
      * @Route("/{id}", name="client_show")
      * @Method("GET")
      */
-    public function showAction(Client $client)
+    public
+    function showAction(Client $client)
     {
         $deleteForm = $this->createDeleteForm($client);
 
@@ -90,7 +96,8 @@ class ClientController extends Controller
      * @Route("/{id}/edit", name="client_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Client $client)
+    public
+    function editAction(Request $request, Client $client)
     {
         $deleteForm = $this->createDeleteForm($client);
         $editForm = $this->createForm('AppBundle\Form\ClientType', $client);
@@ -115,7 +122,8 @@ class ClientController extends Controller
      * @Route("/{id}", name="client_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Client $client)
+    public
+    function deleteAction(Request $request, Client $client)
     {
         $form = $this->createDeleteForm($client);
         $form->handleRequest($request);
@@ -136,7 +144,8 @@ class ClientController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Client $client)
+    private
+    function createDeleteForm(Client $client)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('client_delete', array('id' => $client->getId())))

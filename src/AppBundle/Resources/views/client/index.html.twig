@@ -63,31 +63,33 @@
     </div>
     <a class="btn btn-success" href="{{ path('client_new') }}" role="button">Créer nouveau client</a>
 
-    <h1>Liste des lapins pas venus à leur premier rendez-vous</h1>
+    {% if lapins is not empty %}
+        <h1>Liste des lapins pas venus à leur premier rendez-vous</h1>
 
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Couleur</th>
-                <th>Référence rendez-vous</th>
-                <th>Date rendez-vous</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for lapin in lapins %}
-                {% if lapin.rendezVous.first.isComing == false %}
-                    <tr>
-                        <td>{{ lapin.nom }}</td>
-                        <td>{{ lapin.couleur }}</td>
-                        <td>{{ lapin.rendezVous.first.reference }}</td>
-                        <td>{{ lapin.rendezVous.first.date|date('d/m/Y') }}</td>
-                    </tr>
-                {% endif %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Couleur</th>
+                    <th>Référence rendez-vous</th>
+                    <th>Date rendez-vous</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for lapin in lapins %}
+                    {% for rendezVous in lapin.rendezVous %}
+                        <tr>
+                            <td>{{ lapin.nom }}</td>
+                            <td>{{ lapin.couleur }}</td>
+                            <td>{{ rendezVous.reference }}</td>
+                            <td>{{ rendezVous.date|date('d/m/Y') }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
 
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
 {% endblock %}

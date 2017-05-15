@@ -6,7 +6,7 @@
             Lapins Crétins
         {% endblock %}
     </title>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendor/components-font-awesome/css/font-awesome.min.css') }}">
@@ -27,11 +27,8 @@
         </div>
     </div>
 </div>
+{% include 'default/footer.html.twig' %}
 
-{#{% include 'default/footer.html.twig' %}#}
-
-
-</div>
 {% block javascripts %}
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
